@@ -1,9 +1,15 @@
 package br.com.alura.forum.modelo;
 
+import javax.persistence.*;
+
+@Entity
 public class Subcategoria {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @ManyToOne
     private Categoria categoria;
 
 

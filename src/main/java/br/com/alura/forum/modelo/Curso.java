@@ -1,18 +1,19 @@
 package br.com.alura.forum.modelo;
 
+import javax.persistence.*;
+
+@Entity
 public class Curso {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @ManyToOne
     private Subcategoria subcategoria;
 
     // construtor default exigido pela JPA
     protected Curso() {
-    }
-
-    public Curso(String nome, Subcategoria subcategoria) {
-        this.nome = nome;
-        this.subcategoria = subcategoria;
     }
 
     // getters
