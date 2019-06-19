@@ -2,7 +2,6 @@ package br.com.alura.forum.config.validacao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContext;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -20,12 +19,16 @@ public class ErroDeValidacaoHandler {
     @Autowired
     private MessageSource messageSource;
 
+    //Anotation para dizer qual erro HTTP retornar na request
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    //Anotation para tratar as exceptions
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public List<ErroDeFormularioDto> handle (MethodArgumentNotValidException exception){
 
+        //Passar um DTO para não passar uma entidade
         List<ErroDeFormularioDto> dto = new ArrayList<>();
 
+        //Tratando erro
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         fieldErrors.forEach(e -> {
             String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());

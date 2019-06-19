@@ -65,4 +65,12 @@ public class Topico {
     public StatusTopico getStatus() {
         return status;
     }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
 }
